@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "//mybatis.org/DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.itbank.model.AccountDAO">
+	
+	<select id="selectAll"
+		resultType="com.itbank.vo.AccountVO">
+		<!-- resultType : 반환형을 지정한다 -->
+		
+		select * from account
+			order by idx desc
+
+	</select>
+	
+	<select id="selectOne"
+			parameterType="com.itbank.vo.AccountVO"
+			resultType="com.itbank.vo.AccountVO">
+			<!-- parameterType : 매개변수 자료형을 지정한다 -->
+			
+			select * from account
+				where userid = #{userid}
+				and userpw = #{userpw}
+			
+	</select>
+
+	<insert id="insert"
+		parameterType="com.itbank.vo.AccountVO">
+		<!-- insert, update, delete는 반환형 지정 불필요 -->
+		
+		insert into
+			account(userid,userpw,nick,email)
+			values(#{userid}, #{userpw}, #{nick}, #{email})
+		</insert>
+
+</mapper>

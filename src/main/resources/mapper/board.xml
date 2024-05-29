@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "//mybatis.org/DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.itbank.model.BoardDAO">
+	<!-- 사용할 DAO를 명시 -->
+	
+	
+	<select id="selectAll" 
+			resultType="com.itbank.vo.BoardVO">
+		<!-- id: 사용할 메서드를 명시 -->
+		
+		select * from board_view
+			order by idx desc
+			offset 0 rows
+			fetch first 10 rows only
+		
+	</select>	
+
+
+</mapper>
