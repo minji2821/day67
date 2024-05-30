@@ -21,5 +21,10 @@ import com.itbank.vo.BoardVO;
 	public List<BoardVO> getBoards() {
 		return dao.selectAll();
 	}
+
+	public int addBoard(BoardVO input) {
+		return dao.insert(input);
+		
+	}
 	
 }

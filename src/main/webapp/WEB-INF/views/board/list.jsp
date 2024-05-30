@@ -25,5 +25,11 @@
     </c:forEach>
   </table>
   
+  <br>
+  
+  <a href="${cpath }/board/write">
+    <button>write</button>
+  </a>
+  
 </body>
 </html>

@@ -3,6 +3,6 @@
 <%@ include file="header.jsp" %>
   <%--다른 jsp 파일의 내용을 여기 붙여넣어 페이지를 응답 --%>
   
-  <h4>spring main page(home test)</h4>
+  <h4>congratulation~!!!!</h4>
 </body>
 </html>
