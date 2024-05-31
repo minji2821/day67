@@ -27,10 +27,23 @@
   </tr>
 </table>
   
-  <a href="${cpath }/account/update/${user.idx}"></a>
+  <br>
   <button>수정</button>
-  
-    <a href="${cpath }/account/delete/${user.idx}"></a>
+
   <button>탈퇴</button>
+
+<script>
+ let btns = document.querySelectorAll('button');
+ 
+ //수정버튼
+ btns[0].onclick = ()=>{
+	 location.href = '${cpath}/account/update/${user.idx}';
+ };
+ //삭제버튼
+  btns[1].onclick = () => {
+	  location.href = '${cpath}/account/delete/${user.idx}';
+  };
+</script>
+  
 </body>
 </html>

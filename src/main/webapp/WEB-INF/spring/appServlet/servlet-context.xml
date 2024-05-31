@@ -21,6 +21,18 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	
+	<interceptors>
+		<interceptor>
+			<!-- mapping : 가로챌 url을 지정 -->
+			<mapping path="/account/mypage"/>
+			<mapping path="/board/write"/>
+			
+			<!-- 위의 mappping에 걸렸을 때 실행할 interceptor를 등록 -->
+			<beans:bean id="login" class="com.itbank.interceptor.LoginInterceptor"/>
+		</interceptor>
+	</interceptors>
+	
+	
 	<context:component-scan base-package="com.itbank.controller" />
 	<context:component-scan base-package="com.itbank.exception" />
 	

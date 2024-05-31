@@ -53,6 +53,10 @@ public class AccountVO {
 	public void setJoin_date(Date join_date) {
 		this.join_date = join_date;
 	}
+	public String getHash(String userpw2) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 	
 

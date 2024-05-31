@@ -10,6 +10,10 @@
       <p><input name="email" placeholder="email" type="email" required></p>
       
       <button>SignUp</button>
+      
+      <a href="${cpath }/account/idfind">
+        <button type="button">ID/PW 찾기</button>
+      </a>
     </form>
   </div>
  

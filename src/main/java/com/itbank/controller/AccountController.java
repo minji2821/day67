@@ -7,6 +7,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -14,6 +15,8 @@ import org.springframework.web.servlet.ModelAndView;
 import com.itbank.exception.LoginException;
 import com.itbank.service.AccountService;
 import com.itbank.vo.AccountVO;
+
+import oracle.jdbc.proxy.annotation.Post;
 
 
 @Controller
@@ -68,13 +71,74 @@ public class AccountController {
 		return "redirect:/";
 	}
 	
+	//마이페이지
 	@GetMapping("/mypage")
-	public String mypage(HttpSession session) {
-		AccountVO user=(AccountVO) session.getAttribute("user");
+	public void mypage() {}
+
+	//회원탈퇴
+	@GetMapping("/delete/{idx}")
+	public String delete(@PathVariable int idx) {
+		as.delAccount(idx);
 		
-		if(user==null) {
-			return "redirect:/account/login";
-		}
-		return "account/mypage";
+		return "redirect:/account/logout";
+	}
+	
+	//회원 정보 수정 폼
+	@GetMapping("/update/{idx}")
+	public String update(@PathVariable int idx) {
+		
+		return "account/update";
+		
+	}
+	
+	//회원수정 수행
+	@PostMapping("/update/{idx}")
+	public String update(AccountVO input) 
+throws NoSuchAlgorithmException {
+		as.upAccount(input);
+		
+		return "redirect:/account/logout";
+	}
+
+	//아이디 찾기 폼
+	@GetMapping("/idfind")
+	public void idfind() {}
+
+	//아이디 찾기 수행
+	@PostMapping("/idfind")
+	public ModelAndView idfind(String email) {
+		ModelAndView mav = new ModelAndView();
+		
+		mav.addObject("data",as.idfind(email)); //여기서는 겹치는 게 없어서 selectOne 사용해도 됨
+		mav.addObject("row",1);
+		mav.setViewName("message");
+		
+		return mav;
+	}
+	
+	//비밀번호 찾기 수행
+	@PostMapping("/findpw")
+	public ModelAndView findPW(AccountVO input) throws LoginException {
+		ModelAndView mav = new ModelAndView();
+		
+		mav.addObject("idx", as.findPW(input));
+		mav.setViewName("account/newPassword");
+		
+		return mav;
+	
+	
+	}
+	
+	//새 패스워드로 변경
+	@PostMapping("/newPassword")
+	public ModelAndView newPassword(AccountVO input) 
+			throws NoSuchAlgorithmException {
+		
+		ModelAndView mav = new ModelAndView();
+		
+		mav.addObject("row",as.newPassword(input));
+		mav.addObject("data","변경이 완료되었습니다.");
+		mav.setViewName("message");
+		return mav;
 	}
 }

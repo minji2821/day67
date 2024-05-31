@@ -29,6 +29,41 @@
 		insert into
 			account(userid,userpw,nick,email)
 			values(#{userid}, #{userpw}, #{nick}, #{email})
-		</insert>
+	</insert>
+		
+	<update id="update"
+			parameterType="com.itbank.vo.AccountVO">
+		
+		update account
+		 	set
+		 		userpw = #{userpw},
+		 		email = #{email}
+		 	where idx = #{idx}
+	</update>
+	
+	<select id="selectFind"
+			parameterType="com.itbank.vo.AccountVO"
+			resultType="com.itbank.vo.AccountVO">
+			
+		select * from account
+			where userid = #{userid}
+			and email = #{email}		
+	</select>
+
+	<update id="updateNewPW"
+			parameterType="com.itbank.vo.AccountVO">
+			
+			update account
+				set
+					userpw = #{userpw}
+				where idx = #{idx}
+	</update>	
+	<!-- 
+	<delete id="delete"
+			parameterType="int">
+			delete from account where idx=#{idx}
+	</delete>
+	 -->
+	
 
 </mapper>
